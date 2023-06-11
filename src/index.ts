@@ -1,6 +1,5 @@
 import { input, select } from '@inquirer/prompts';
 import path from 'path';
-import { fileURLToPath } from 'url';
 import { mkdir } from 'fs/promises';
 import { copy } from 'fs-extra';
 
@@ -28,7 +27,7 @@ const main = async (): Promise<void> => {
   });
 
   const templateDir = path.resolve(
-    fileURLToPath(import.meta.url),
+    __filename,
     '../..',
     'templates',
     `${buildTool}-${language}`

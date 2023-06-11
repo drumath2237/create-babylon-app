@@ -2,8 +2,11 @@
   "name": "create-babylon-app",
   "version": "0.1.0",
   "description": "",
-  "type": "module",
-  "main": "index.js",
+  "type": "commonjs",
+  "main": "index.cjs",
+  "bin": {
+    "create-babylon-app": "index.cjs"
+  },
   "scripts": {
     "build": "tsc -b",
     "dev": "vite-node src/index.ts",
