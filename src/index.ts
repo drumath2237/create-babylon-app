@@ -5,12 +5,6 @@ import { mkdir } from 'fs/promises';
 import { copy } from 'fs-extra';
 
 const main = async (): Promise<void> => {
-  const testTemplateDir = path.resolve(
-    fileURLToPath(import.meta.url),
-    '../..',
-    'templates/test'
-  );
-
   const projectName = await input({
     message: 'Project Name:',
     default: 'Babylon-App',
@@ -33,11 +27,18 @@ const main = async (): Promise<void> => {
     ],
   });
 
+  const templateDir = path.resolve(
+    fileURLToPath(import.meta.url),
+    '../..',
+    'templates',
+    `${buildTool}-${language}`
+  );
+
   const workingDir = process.cwd();
   const appDir = path.join(workingDir, projectName);
 
   await mkdir(appDir);
-  await copy(testTemplateDir, appDir);
+  await copy(templateDir, appDir);
 };
 
 main();

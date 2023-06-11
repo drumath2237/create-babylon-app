@@ -88,3 +88,6 @@ typings/
 .dynamodb/
 
 dist/
+
+templates/*/*lock.*
+templates/*/node_modules
