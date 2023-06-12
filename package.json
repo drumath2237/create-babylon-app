@@ -1,11 +1,16 @@
 {
   "name": "create-babylon-app",
   "version": "0.1.0",
-  "description": "",
+  "description": "A CLI for scaffolding Babylon.js Web App.",
   "type": "commonjs",
   "main": "index.cjs",
   "bin": {
     "create-babylon-app": "index.cjs"
+  },
+  "homepage": "https://github.com/drumath2237/create-babylon-app",
+  "repository": {
+    "url": "https://github.com/drumath2237/create-babylon-app",
+    "type": "git"
   },
   "scripts": {
     "dev": "vite-node src/index.ts",
@@ -28,5 +33,24 @@
     "eslint-config-prettier": "^8.8.0",
     "prettier": "^2.8.8",
     "vite-node": "^0.32.0"
-  }
+  },
+  "keywords": [
+    "babylonjs",
+    "babylonjs",
+    "CLI",
+    "vite",
+    "nodejs",
+    "typescript"
+  ],
+  "engines": {
+    "node": ">=14"
+  },
+  "files": [
+    "dist/",
+    "templates/",
+    "index.cjs",
+    "LICENSE.md",
+    "README.md",
+    ""
+  ]
 }
