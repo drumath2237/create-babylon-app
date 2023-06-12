@@ -2,6 +2,7 @@ import { input, select } from '@inquirer/prompts';
 import path from 'path';
 import { mkdir } from 'fs/promises';
 import { copy, readJSON, writeJson } from 'fs-extra';
+import { log } from 'console';
 
 const main = async (): Promise<void> => {
   const projectName = await input({
@@ -43,6 +44,9 @@ const main = async (): Promise<void> => {
   const packageJson = await readJSON(packageJsonPath);
   packageJson.name = projectName;
   await writeJson(packageJsonPath, packageJson, { spaces: '\t' });
+
+  log('\nDone!');
+  log(`  cd ${projectName}\n`);
 };
 
 main();
