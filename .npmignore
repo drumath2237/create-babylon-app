@@ -1,0 +1,6 @@
+src/
+.prettierrc
+.eslintrc.js
+tsconfig.json
+.vscode/
+.github/
