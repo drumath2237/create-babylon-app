@@ -8,9 +8,9 @@
     "create-babylon-app": "index.cjs"
   },
   "scripts": {
-    "build": "tsc -b",
     "dev": "vite-node src/index.ts",
-    "start": "pnpm run build && node ./index.js"
+    "build": "tsc -b",
+    "start": "node ./index.cjs"
   },
   "author": "@drumath2237",
   "license": "Apache-2.0",

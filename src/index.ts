@@ -1,7 +1,7 @@
 import { input, select } from '@inquirer/prompts';
 import path from 'path';
 import { mkdir } from 'fs/promises';
-import { copy } from 'fs-extra';
+import { copy, readJSON, writeJson } from 'fs-extra';
 
 const main = async (): Promise<void> => {
   const projectName = await input({
@@ -38,6 +38,11 @@ const main = async (): Promise<void> => {
 
   await mkdir(appDir);
   await copy(templateDir, appDir);
+
+  const packageJsonPath = path.join(appDir, 'package.json');
+  const packageJson = await readJSON(packageJsonPath);
+  packageJson.name = projectName;
+  await writeJson(packageJsonPath, packageJson, { spaces: '\t' });
 };
 
 main();
