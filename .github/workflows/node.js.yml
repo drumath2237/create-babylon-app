@@ -1,15 +1,15 @@
 name: Build and Publish
 on:
   push:
-    branches:
-      - main
+    tags:
+      - 'v*'
 
 jobs:
   build:
     runs-on: ubuntu-20.04
     strategy:
       matrix:
-        node-version: [18]
+        node-version: [20]
     steps:
       - uses: actions/checkout@v3
       - uses: pnpm/action-setup@v2
