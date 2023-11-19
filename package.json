@@ -15,7 +15,8 @@
   "scripts": {
     "dev": "vite-node src/index.ts",
     "build": "tsc -b",
-    "start": "node ./index.cjs"
+    "start": "node ./index.cjs",
+    "version:set": "pnpm exec lerna version"
   },
   "author": "@drumath2237",
   "license": "Apache-2.0",
