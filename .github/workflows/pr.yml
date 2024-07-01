@@ -1,8 +1,5 @@
 name: Build and Publish
-on:
-  push:
-    tags:
-      - "v*"
+on: pull_request
 
 jobs:
   build:
@@ -32,8 +29,3 @@ jobs:
 
       - name: Build
         run: pnpm run build
-
-      - name: Publish
-        run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
