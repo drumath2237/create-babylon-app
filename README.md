@@ -29,6 +29,15 @@ This provides following templates.
   - JavaScript
 - ~~Webpack (node ready)~~
 
+## For Development
+
+### Release Flow
+
+- (in local) create `release/x.x.x` branch
+- (in local) `pnpm set:version`
+- (Pull Req) Create PR and merge it
+  - then, publish to npm
+
 ## Author
 
 [@drumath2237](https://twitter.com/ninisan_drumath)
