@@ -1,38 +1,40 @@
 name: Build and Publish
 on:
-  push:
-    tags:
-      - "v*"
+  pull_request:
 
 jobs:
-  build:
+  build_and_test:
     runs-on: ubuntu-22.04
     strategy:
       matrix:
         node-version: [20]
     steps:
       - uses: actions/checkout@v4
-
       - uses: pnpm/action-setup@v4
         with:
           version: 9
-
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
           cache: "pnpm"
           registry-url: https://registry.npmjs.org
-
       - name: Install dependencies
         run: pnpm install
-
       - name: Static test
-        run: pnpm check
-
+        run: pnpm run check:ci
       - name: Build
         run: pnpm run build
 
+  release:
+    runs-on: ubuntu-22.04
+    needs: build_and_test
+    # releaseブランチからmainにPRがマージされたら
+    if: |
+      github.event.pull_request.merged == true
+      && github.base_ref == 'main'
+      && startsWith(github.head_ref, 'release/')
+    steps:
       - name: Publish
         run: npm publish
         env:
