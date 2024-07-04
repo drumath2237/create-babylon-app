@@ -38,7 +38,7 @@ jobs:
     if: |
       github.event.pull_request.merged == true
       && github.base_ref == 'main'
-      && startsWith(github.head_ref, 'release/')
+      && startsWith(github.head_ref, 'release/v')
     steps:
       - uses: actions/checkout@v4
       - name: Setup Node
