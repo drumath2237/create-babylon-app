@@ -34,6 +34,9 @@ jobs:
   release:
     runs-on: ubuntu-22.04
     needs: build_and_test
+    permissions:
+      contents: read
+      id-token: write
     # releaseブランチからmainにPRがマージされたら
     if: |
       github.event.pull_request.merged == true
