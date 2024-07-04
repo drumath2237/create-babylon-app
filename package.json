@@ -9,7 +9,7 @@
   },
   "homepage": "https://github.com/drumath2237/create-babylon-app",
   "repository": {
-    "url": "https://github.com/drumath2237/create-babylon-app",
+    "url": "git+https://github.com/drumath2237/create-babylon-app.git",
     "type": "git"
   },
   "scripts": {
