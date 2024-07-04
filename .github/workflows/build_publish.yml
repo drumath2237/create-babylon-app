@@ -40,6 +40,10 @@ jobs:
       && github.base_ref == 'main'
       && startsWith(github.head_ref, 'release/')
     steps:
+      - uses: actions/checkout@v4
+      - run: |
+          pwd
+          ls
       - name: Publish
         run: npm publish
         env:
