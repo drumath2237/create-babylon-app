@@ -1,6 +1,9 @@
 # create-babylon-app
 
-[![Build](https://github.com/drumath2237/create-babylon/actions/workflows/node.js.yml/badge.svg)](https://github.com/drumath2237/create-babylon/actions/workflows/node.js.yml)
+[![Build and Publish](https://github.com/drumath2237/create-babylon-app/actions/workflows/build_publish.yml/badge.svg)](https://github.com/drumath2237/create-babylon-app/actions/workflows/build_publish.yml)
+![NPM Version](https://img.shields.io/npm/v/create-babylon-app?logo=npm&color=red)
+![NPM Downloads](https://img.shields.io/npm/dm/create-babylon-app?logo=npm&color=red)
+![Babylon Version](https://img.shields.io/badge/Babylon.js-v7-red)
 
 ## About
 
