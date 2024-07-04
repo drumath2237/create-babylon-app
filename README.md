@@ -1,4 +1,4 @@
-# create-babylon-app
+# :sparkles: create-babylon-app
 
 [![Build and Publish](https://github.com/drumath2237/create-babylon-app/actions/workflows/build_publish.yml/badge.svg)](https://github.com/drumath2237/create-babylon-app/actions/workflows/build_publish.yml)
 ![NPM Version](https://img.shields.io/npm/v/create-babylon-app?logo=npm&color=red)
@@ -7,13 +7,13 @@
 
 ## About
 
-A CLI for scaffolding Babylon.js Web App.
+A CLI for scaffolding Babylon.js Web App :wrench:
 
 ## Environment
 
-- Node.js v18
-- pnpm v8
-- Babylon.js 6.7.0
+- Node.js v20
+- pnpm v9
+- Babylon.js 7.11.1~
 
 ## Usage
 
@@ -36,10 +36,10 @@ This provides following templates.
 
 ### Release Flow
 
-- (in local) create `release/x.x.x` branch
+- (in local) create `release/vx.x.x` branch
 - (in local) `pnpm set:version`
 - (Pull Req) Create PR and merge it
-  - then, publish to npm
+  - then, automatically published to npm
 
 ## Author
 
