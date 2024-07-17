@@ -1,9 +1,9 @@
 import { log } from "node:console";
 import { mkdir } from "node:fs/promises";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 import { input, select } from "@inquirer/prompts";
 import { copy, readJSON, writeJson } from "fs-extra/esm";
-import { fileURLToPath } from "node:url";
 
 export const main = async (): Promise<void> => {
 	const projectName = await input({
