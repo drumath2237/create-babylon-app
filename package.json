@@ -41,7 +41,6 @@
   },
   "keywords": [
     "babylonjs",
-    "babylonjs",
     "CLI",
     "vite",
     "nodejs",
@@ -51,8 +50,8 @@
     "node": ">=14"
   },
   "files": [
-    "dist/",
-    "templates/",
-    "index.cjs"
+    "dist",
+    "templates",
+    "bin"
   ]
 }
