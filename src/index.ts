@@ -2,9 +2,10 @@ import { log } from "node:console";
 import { mkdir } from "node:fs/promises";
 import path from "node:path";
 import { input, select } from "@inquirer/prompts";
-import { copy, readJSON, writeJson } from "fs-extra";
+import { copy, readJSON, writeJson } from "fs-extra/esm";
+import { fileURLToPath } from "node:url";
 
-const main = async (): Promise<void> => {
+export const main = async (): Promise<void> => {
 	const projectName = await input({
 		message: "Project Name:",
 		default: "Babylon-App",
@@ -28,7 +29,7 @@ const main = async (): Promise<void> => {
 	});
 
 	const templateDir = path.resolve(
-		__filename,
+		fileURLToPath(import.meta.url),
 		"../..",
 		"templates",
 		`${buildTool}-${language}`,
@@ -48,5 +49,3 @@ const main = async (): Promise<void> => {
 	log("\nDone!");
 	log(`  cd ${projectName}\n`);
 };
-
-main();

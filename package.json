@@ -3,9 +3,9 @@
   "version": "0.1.7",
   "description": "A CLI for scaffolding Babylon.js Web App.",
   "type": "commonjs",
-  "main": "index.cjs",
+  "main": "./bin/cli.mjs",
   "bin": {
-    "create-babylon-app": "index.cjs"
+    "create-babylon-app": "./bin/cli.mjs"
   },
   "homepage": "https://github.com/drumath2237/create-babylon-app",
   "repository": {
@@ -14,8 +14,8 @@
   },
   "scripts": {
     "dev": "vite-node src/index.ts",
-    "build": "tsc -b",
-    "start": "node ./index.cjs",
+    "build": "unbuild",
+    "start": "node ./bin/cli.mjs",
     "version:set": "pnpm exec lerna version",
     "lint": "biome lint ./src",
     "format": "biome format --write ./src",
