@@ -1,0 +1,11 @@
+{
+  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+  "vcs":{
+    "clientKind": "git",
+    "useIgnoreFile": true
+  },
+  "formatter":{
+    "indentStyle":"space",
+    "indentWidth":2
+  }
+}
