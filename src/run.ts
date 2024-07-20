@@ -1,3 +1,3 @@
-import { main } from "./index";
+import { runMain } from "./index";
 
-main();
+runMain();

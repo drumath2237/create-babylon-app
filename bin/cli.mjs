@@ -1,3 +1,3 @@
-import { main } from "../dist/index.mjs";
+import { runMain } from "../dist/index.mjs";
 
-main();
+runMain();

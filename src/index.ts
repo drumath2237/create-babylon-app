@@ -3,9 +3,22 @@ import { mkdir } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { input, select } from "@inquirer/prompts";
+import { runMain as _runMain, defineCommand } from "citty";
 import { copy, readJSON, writeJson } from "fs-extra/esm";
 
-export const main = async (): Promise<void> => {
+export const runMain = () => _runMain(mainCommand);
+
+const mainCommand = defineCommand({
+  meta: {
+    description:
+      "create-babylon-app is a CLI for scaffolding Babylon.js web application project from templates!",
+  },
+  run: () => {
+    main();
+  },
+});
+
+const main = async (): Promise<void> => {
   const projectName = await input({
     message: "Project Name:",
     default: "Babylon-App",
