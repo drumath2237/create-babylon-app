@@ -4,6 +4,7 @@ import { fileURLToPath } from "node:url";
 import { runMain as _runMain, defineCommand } from "citty";
 import { copy, readJSON, writeJson } from "fs-extra/esm";
 import { consola } from "consola";
+import { colorize } from "consola/utils";
 
 export const runMain = () => _runMain(mainCommand);
 
@@ -16,7 +17,7 @@ const mainCommand = defineCommand({
     const projectName = await consola.prompt("Project Name", {
       type: "text",
       default: "Babylon-App",
-      initial: "Babylon-App",
+      placeholder: "Babylon-App",
     });
 
     const buildTool = await consola.prompt("Build Tools", {
@@ -24,13 +25,11 @@ const mainCommand = defineCommand({
       options: [{ value: "vite", label: "Vite" }],
     });
 
-    consola.info(`${buildTool.value}, ${buildTool.label}`);
-
     const language = await consola.prompt("Language", {
       type: "select",
       options: [
-        { value: "ts", label: "TypeScript" },
-        { value: "js", label: "JavaScript" },
+        { value: "ts", label: `${colorize("blue", "TypeScript")}` },
+        { value: "js", label: `${colorize("yellow", "JavaScript")}` },
       ],
     });
 
@@ -38,7 +37,7 @@ const mainCommand = defineCommand({
       fileURLToPath(import.meta.url),
       "../..",
       "templates",
-      `${buildTool.value}-${language.value}`,
+      `${buildTool}-${language}`,
     );
 
     const workingDir = process.cwd();
