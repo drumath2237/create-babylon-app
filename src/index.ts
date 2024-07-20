@@ -2,9 +2,9 @@ import { mkdir } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { runMain as _runMain, defineCommand } from "citty";
-import { copy, readJSON, writeJson } from "fs-extra/esm";
 import { consola } from "consola";
 import { colorize } from "consola/utils";
+import { copy, readJSON, writeJson } from "fs-extra/esm";
 
 export const runMain = () => _runMain(mainCommand);
 
