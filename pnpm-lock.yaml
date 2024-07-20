@@ -11,6 +11,12 @@ importers:
       '@inquirer/prompts':
         specifier: ^5.2.1
         version: 5.2.1
+      citty:
+        specifier: ^0.1.6
+        version: 0.1.6
+      consola:
+        specifier: ^3.2.3
+        version: 3.2.3
       fs-extra:
         specifier: ^11.2.0
         version: 11.2.0
@@ -30,6 +36,9 @@ importers:
       '@types/node':
         specifier: ^20.14.11
         version: 20.14.11
+      jiti:
+        specifier: ^1.21.6
+        version: 1.21.6
       typescript:
         specifier: ^5.5.3
         version: 5.5.3

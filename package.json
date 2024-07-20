@@ -27,6 +27,8 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@inquirer/prompts": "^5.2.1",
+    "citty": "^0.1.6",
+    "consola": "^3.2.3",
     "fs-extra": "^11.2.0"
   },
   "devDependencies": {
@@ -35,6 +37,7 @@
     "@lerna-lite/version": "^3.7.1",
     "@types/fs-extra": "^11.0.4",
     "@types/node": "^20.14.11",
+    "jiti": "^1.21.6",
     "typescript": "^5.5.3",
     "unbuild": "^2.0.0",
     "vite-node": "^2.0.3"
