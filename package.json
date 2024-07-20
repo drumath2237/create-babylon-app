@@ -13,7 +13,7 @@
     "type": "git"
   },
   "scripts": {
-    "dev": "vite-node src/run.ts",
+    "dev": "jiti src/run.ts",
     "build": "unbuild",
     "start": "node ./bin/cli.mjs",
     "version:set": "pnpm exec lerna version",
