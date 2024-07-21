@@ -1,4 +1,4 @@
-import { mkdir, cp } from "node:fs/promises";
+import { cp, mkdir } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { runMain as _runMain, defineCommand } from "citty";
