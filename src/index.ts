@@ -1,17 +1,22 @@
-import { mkdir } from "node:fs/promises";
+import { cp, mkdir } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { runMain as _runMain, defineCommand } from "citty";
 import { consola } from "consola";
 import { colorize } from "consola/utils";
-import { copy, readJSON, writeJson } from "fs-extra/esm";
+import { readPackageJSON, writePackageJSON } from "pkg-types";
 
 export const runMain = () => _runMain(mainCommand);
 
 const mainCommand = defineCommand({
-  meta: {
-    description:
-      "create-babylon-app is a CLI for scaffolding Babylon.js web application project from templates!",
+  meta: async () => {
+    const packageJson = await readPackageJSON();
+    return {
+      name: "create-babylon-app",
+      version: packageJson.version,
+      description:
+        "A CLI for scaffolding Babylon.js web application project from templates!",
+    };
   },
   run: async () => {
     const projectName = await consola.prompt("Project Name", {
@@ -44,12 +49,14 @@ const mainCommand = defineCommand({
     const appDir = path.join(workingDir, projectName);
 
     await mkdir(appDir);
-    await copy(templateDir, appDir);
+    await cp(templateDir, appDir, { recursive: true });
 
-    const packageJsonPath = path.join(appDir, "package.json");
-    const packageJson = await readJSON(packageJsonPath);
-    packageJson.name = projectName;
-    await writeJson(packageJsonPath, packageJson, { spaces: "\t" });
+    const packageJson = await readPackageJSON(appDir);
+    if (packageJson.name) {
+      packageJson.name = projectName;
+      const jsonPath = path.resolve(appDir, "package.json");
+      await writePackageJSON(jsonPath, packageJson);
+    }
 
     console.log("\nDone!");
     console.log(`  cd ${projectName}\n`);
