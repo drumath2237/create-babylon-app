@@ -5,13 +5,19 @@ import { runMain as _runMain, defineCommand } from "citty";
 import { consola } from "consola";
 import { colorize } from "consola/utils";
 import { copy, readJSON, writeJson } from "fs-extra/esm";
+import { readPackageJSON } from "pkg-types";
 
 export const runMain = () => _runMain(mainCommand);
 
 const mainCommand = defineCommand({
-  meta: {
-    description:
-      "create-babylon-app is a CLI for scaffolding Babylon.js web application project from templates!",
+  meta: async () => {
+    const packageJson = await readPackageJSON();
+    return {
+      name: "create-babylon-app",
+      version: packageJson.version,
+      description:
+        "A CLI for scaffolding Babylon.js web application project from templates!",
+    };
   },
   run: async () => {
     const projectName = await consola.prompt("Project Name", {
