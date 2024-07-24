@@ -1,10 +1,10 @@
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 import { runMain as _runMain, defineCommand } from "citty";
 import { consola } from "consola";
 import { colorize } from "consola/utils";
 import { downloadTemplate } from "giget";
 import { readPackageJSON, writePackageJSON } from "pkg-types";
-import { fileURLToPath } from "node:url";
 
 export const runMain = () => _runMain(mainCommand);
 
