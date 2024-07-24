@@ -1,4 +1,5 @@
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 import { runMain as _runMain, defineCommand } from "citty";
 import { consola } from "consola";
 import { colorize } from "consola/utils";
@@ -9,7 +10,8 @@ export const runMain = () => _runMain(mainCommand);
 
 const mainCommand = defineCommand({
   meta: async () => {
-    const packageJson = await readPackageJSON();
+    const execDir = path.resolve(fileURLToPath(import.meta.url), "../..");
+    const packageJson = await readPackageJSON(execDir);
     return {
       name: "create-babylon-app",
       version: packageJson.version,
