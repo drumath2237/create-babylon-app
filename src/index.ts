@@ -2,8 +2,8 @@ import path from "node:path";
 import { runMain as _runMain, defineCommand } from "citty";
 import { consola } from "consola";
 import { colorize } from "consola/utils";
-import { readPackageJSON, writePackageJSON } from "pkg-types";
 import { downloadTemplate } from "giget";
+import { readPackageJSON, writePackageJSON } from "pkg-types";
 
 export const runMain = () => _runMain(mainCommand);
 
