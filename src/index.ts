@@ -4,12 +4,14 @@ import { consola } from "consola";
 import { colorize } from "consola/utils";
 import { downloadTemplate } from "giget";
 import { readPackageJSON, writePackageJSON } from "pkg-types";
+import { fileURLToPath } from "node:url";
 
 export const runMain = () => _runMain(mainCommand);
 
 const mainCommand = defineCommand({
   meta: async () => {
-    const packageJson = await readPackageJSON();
+    const execDir = path.resolve(fileURLToPath(import.meta.url), "../..");
+    const packageJson = await readPackageJSON(execDir);
     return {
       name: "create-babylon-app",
       version: packageJson.version,
