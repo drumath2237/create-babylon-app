@@ -1,10 +1,9 @@
-import { cp, mkdir } from "node:fs/promises";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
 import { runMain as _runMain, defineCommand } from "citty";
 import { consola } from "consola";
 import { colorize } from "consola/utils";
 import { readPackageJSON, writePackageJSON } from "pkg-types";
+import { downloadTemplate } from "giget";
 
 export const runMain = () => _runMain(mainCommand);
 
@@ -38,18 +37,20 @@ const mainCommand = defineCommand({
       ],
     });
 
-    const templateDir = path.resolve(
-      fileURLToPath(import.meta.url),
-      "../..",
-      "templates",
-      `${buildTool}-${language}`,
+    const doInstall = await consola.prompt("Install Dependencies?", {
+      type: "confirm",
+      initial: false,
+    });
+
+    const githubRepoUrlBase = "gh:drumath2237/create-babylon-app/templates";
+    const templateName = `${buildTool}-${language}`;
+    const { dir: appDir } = await downloadTemplate(
+      `${githubRepoUrlBase}/${templateName}`,
+      {
+        dir: projectName,
+        install: doInstall,
+      },
     );
-
-    const workingDir = process.cwd();
-    const appDir = path.join(workingDir, projectName);
-
-    await mkdir(appDir);
-    await cp(templateDir, appDir, { recursive: true });
 
     const packageJson = await readPackageJSON(appDir);
     if (packageJson.name) {
