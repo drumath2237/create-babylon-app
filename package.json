@@ -1,6 +1,6 @@
 {
   "name": "create-babylon-app",
-  "version": "0.1.7",
+  "version": "0.2.0",
   "description": "A CLI for scaffolding Babylon.js Web App.",
   "type": "commonjs",
   "main": "./bin/cli.mjs",
