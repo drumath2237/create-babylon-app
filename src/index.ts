@@ -18,18 +18,18 @@ const mainCommand = defineCommand({
     };
   },
   run: async () => {
-    const projectName = await consola.prompt("Project Name", {
+    const projectName = await consola.prompt("Project Name?", {
       type: "text",
-      default: "Babylon-App",
-      placeholder: "Babylon-App",
+      default: "babylon-app",
+      placeholder: "babylon-app",
     });
 
-    const buildTool = await consola.prompt("Build Tools", {
+    const buildTool = await consola.prompt("Build Tools?", {
       type: "select",
       options: [{ value: "vite", label: "Vite" }],
     });
 
-    const language = await consola.prompt("Language", {
+    const language = await consola.prompt("Language?", {
       type: "select",
       options: [
         { value: "ts", label: `${colorize("blue", "TypeScript")}` },
@@ -59,7 +59,8 @@ const mainCommand = defineCommand({
       await writePackageJSON(jsonPath, packageJson);
     }
 
-    console.log("\nDone!");
-    console.log(`  cd ${projectName}\n`);
+    consola.log("\n");
+    consola.success("Done!✨");
+    consola.log(`  cd ${projectName}`);
   },
 });
