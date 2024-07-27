@@ -26,7 +26,6 @@
   "author": "@drumath2237",
   "license": "Apache-2.0",
   "dependencies": {
-    "@inquirer/prompts": "^5.2.1",
     "citty": "^0.1.6",
     "consola": "^3.2.3",
     "giget": "^1.2.3",
@@ -36,10 +35,9 @@
     "@biomejs/biome": "^1.8.3",
     "@lerna-lite/cli": "^3.7.1",
     "@lerna-lite/version": "^3.7.1",
-    "@types/fs-extra": "^11.0.4",
-    "@types/node": "^20.14.11",
+    "@types/node": "^20.14.12",
     "jiti": "^1.21.6",
-    "typescript": "^5.5.3",
+    "typescript": "^5.5.4",
     "unbuild": "^2.0.0"
   },
   "keywords": [
