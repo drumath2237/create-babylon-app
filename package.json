@@ -35,9 +35,9 @@
     "@biomejs/biome": "^1.8.3",
     "@lerna-lite/cli": "^3.7.1",
     "@lerna-lite/version": "^3.7.1",
-    "@types/node": "^20.14.11",
+    "@types/node": "^20.14.12",
     "jiti": "^1.21.6",
-    "typescript": "^5.5.3",
+    "typescript": "^5.5.4",
     "unbuild": "^2.0.0"
   },
   "keywords": [
