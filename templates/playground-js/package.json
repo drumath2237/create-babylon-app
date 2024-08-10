@@ -1,0 +1,15 @@
+{
+  "name": "playground-js",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@babylonjs/core": "^7.11.1",
+    "vite": "^5.3.1"
+  }
+}
