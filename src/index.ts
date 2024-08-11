@@ -2,7 +2,6 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { runMain as _runMain, defineCommand } from "citty";
 import { consola } from "consola";
-import { colorize } from "consola/utils";
 import { downloadTemplate } from "giget";
 import { readPackageJSON, writePackageJSON } from "pkg-types";
 import { templates } from "./projectTemplates";
@@ -30,15 +29,19 @@ const mainCommand = defineCommand({
 
     const templateDirName = await constructTemplateNameAsync(
       templates,
-      async ({ message, selection }) => {
+      async ({ message, selections }) => {
         const val = await consola.prompt(message, {
           type: "select",
-          options: selection,
+          options: selections.map((s) => ({ label: s.label, value: s.value })),
         });
-        const valStr = val as unknown as string;
-        const index = selection.map((sel) => sel.value).indexOf(valStr);
 
-        return { index };
+        // latest version of consola, prompt returns only value.
+        // return val <-- this will cause runtime type error
+        const valStr = val as unknown as string;
+        // biome-ignore lint/style/noNonNullAssertion: <explanation>
+        const selected = selections.find((s) => s.value === valStr)!;
+
+        return selected;
       },
     );
 

@@ -6,30 +6,23 @@ export type SelectionType = {
 
 export type TemplateConfig = {
   message: string;
-  selection: Array<SelectionType>;
+  selections: Array<SelectionType>;
 };
-
-export type SelectionTypeWithoutSub = Omit<SelectionType, "subSelection">;
 
 export type SelectorFnType = (arg: {
   message: string;
-  selection: Array<SelectionTypeWithoutSub>;
-}) => SelectorFnReturnType | Promise<SelectorFnReturnType>;
-
-export type SelectorFnReturnType = { index: number };
+  selections: Array<SelectionType>;
+}) => SelectionType | Promise<SelectionType>;
 
 export const constructTemplateNameAsync = async (
   templates: TemplateConfig,
   selector: SelectorFnType,
 ): Promise<string> => {
-  const { index } = await selector(templates);
-  const { value, subSelection } = templates.selection[index];
-
+  const { value, subSelection } = await selector(templates);
   if (!subSelection) {
     return value;
   }
 
   const subResult = await constructTemplateNameAsync(subSelection, selector);
-
   return `${value}-${subResult}`;
 };
