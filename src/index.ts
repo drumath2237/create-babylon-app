@@ -2,9 +2,10 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { runMain as _runMain, defineCommand } from "citty";
 import { consola } from "consola";
-import { colorize } from "consola/utils";
 import { downloadTemplate } from "giget";
 import { readPackageJSON, writePackageJSON } from "pkg-types";
+import { templates } from "./projectTemplates";
+import { constructTemplateNameAsync } from "./templateSelector";
 
 export const runMain = () => _runMain(mainCommand);
 
@@ -26,18 +27,23 @@ const mainCommand = defineCommand({
       placeholder: "babylon-app",
     });
 
-    const buildTool = await consola.prompt("Build Tools?", {
-      type: "select",
-      options: [{ value: "vite", label: "Vite" }],
-    });
+    const templateDirName = await constructTemplateNameAsync(
+      templates,
+      async ({ message, selections }) => {
+        const val = await consola.prompt(message, {
+          type: "select",
+          options: selections.map((s) => ({ label: s.label, value: s.value })),
+        });
 
-    const language = await consola.prompt("Language?", {
-      type: "select",
-      options: [
-        { value: "ts", label: `${colorize("blue", "TypeScript")}` },
-        { value: "js", label: `${colorize("yellow", "JavaScript")}` },
-      ],
-    });
+        // latest version of consola, prompt returns only value.
+        // return val <-- this will cause runtime type error
+        const valStr = val as unknown as string;
+        // biome-ignore lint/style/noNonNullAssertion: <explanation>
+        const selected = selections.find((s) => s.value === valStr)!;
+
+        return selected;
+      },
+    );
 
     const doInstall = await consola.prompt("Install Dependencies?", {
       type: "confirm",
@@ -45,9 +51,8 @@ const mainCommand = defineCommand({
     });
 
     const githubRepoUrlBase = "gh:drumath2237/create-babylon-app/templates";
-    const templateName = `${buildTool}-${language}`;
     const { dir: appDir } = await downloadTemplate(
-      `${githubRepoUrlBase}/${templateName}`,
+      `${githubRepoUrlBase}/${templateDirName}`,
       {
         dir: projectName,
         install: doInstall,
