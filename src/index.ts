@@ -5,6 +5,7 @@ import { consola } from "consola";
 import { colorize } from "consola/utils";
 import { downloadTemplate } from "giget";
 import { readPackageJSON, writePackageJSON } from "pkg-types";
+import { constructTemplateNameAsync, templates } from "./templateSelector";
 
 export const runMain = () => _runMain(mainCommand);
 
@@ -20,6 +21,19 @@ const mainCommand = defineCommand({
     };
   },
   run: async () => {
+    // const tempStr = await constructTemplateNameAsync(
+    //   templates,
+    //   async ({ message, selection }) => {
+    //     const val = await consola.prompt(message, {
+    //       type: "select",
+    //       options: selection,
+    //     });
+    //     const valStr = val as unknown as string;
+    //     const index = selection.map((sel) => sel.value).indexOf(valStr);
+
+    //     return { index };
+    //   },
+    // );
     const projectName = await consola.prompt("Project Name?", {
       type: "text",
       default: "babylon-app",

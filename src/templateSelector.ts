@@ -1,19 +1,19 @@
-type SelectionType = {
+export type SelectionType = {
   label: string;
   value: string;
   subSelection?: TemplateConfig;
 };
 
-type TemplateConfig = {
+export type TemplateConfig = {
   message: string;
   selection: Array<SelectionType>;
 };
 
-const templates: TemplateConfig = {
+export const templates: TemplateConfig = {
   message: "Select Template Type",
   selection: [
     {
-      label: "✨Simple",
+      label: "✨ Simple",
       value: "simple",
       subSelection: {
         message: "Select Language",
@@ -24,7 +24,7 @@ const templates: TemplateConfig = {
       },
     },
     {
-      label: "🏝️Playground",
+      label: "🍰 Playground",
       value: "playground",
       subSelection: {
         message: "Select Language",
@@ -35,20 +35,22 @@ const templates: TemplateConfig = {
       },
     },
     {
-      label: "📦Library",
+      label: "📦 Library",
       value: "library",
     },
   ],
 };
 
-type SelectionTypeWithoutSub = Omit<SelectionType, "subSelection">;
-type SelectorFnType = (arg: {
+export type SelectionTypeWithoutSub = Omit<SelectionType, "subSelection">;
+
+export type SelectorFnType = (arg: {
   message: string;
   selection: Array<SelectionTypeWithoutSub>;
 }) => SelectorFnReturnType | Promise<SelectorFnReturnType>;
-type SelectorFnReturnType = { index: number };
 
-const constructTemplateNameAsync = async (
+export type SelectorFnReturnType = { index: number };
+
+export const constructTemplateNameAsync = async (
   templates: TemplateConfig,
   selector: SelectorFnType,
 ): Promise<string> => {
