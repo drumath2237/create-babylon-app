@@ -21,37 +21,25 @@ const mainCommand = defineCommand({
     };
   },
   run: async () => {
-    // const tempStr = await constructTemplateNameAsync(
-    //   templates,
-    //   async ({ message, selection }) => {
-    //     const val = await consola.prompt(message, {
-    //       type: "select",
-    //       options: selection,
-    //     });
-    //     const valStr = val as unknown as string;
-    //     const index = selection.map((sel) => sel.value).indexOf(valStr);
-
-    //     return { index };
-    //   },
-    // );
     const projectName = await consola.prompt("Project Name?", {
       type: "text",
       default: "babylon-app",
       placeholder: "babylon-app",
     });
 
-    const buildTool = await consola.prompt("Build Tools?", {
-      type: "select",
-      options: [{ value: "vite", label: "Vite" }],
-    });
+    const templateDirName = await constructTemplateNameAsync(
+      templates,
+      async ({ message, selection }) => {
+        const val = await consola.prompt(message, {
+          type: "select",
+          options: selection,
+        });
+        const valStr = val as unknown as string;
+        const index = selection.map((sel) => sel.value).indexOf(valStr);
 
-    const language = await consola.prompt("Language?", {
-      type: "select",
-      options: [
-        { value: "ts", label: `${colorize("blue", "TypeScript")}` },
-        { value: "js", label: `${colorize("yellow", "JavaScript")}` },
-      ],
-    });
+        return { index };
+      },
+    );
 
     const doInstall = await consola.prompt("Install Dependencies?", {
       type: "confirm",
@@ -59,9 +47,8 @@ const mainCommand = defineCommand({
     });
 
     const githubRepoUrlBase = "gh:drumath2237/create-babylon-app/templates";
-    const templateName = `${buildTool}-${language}`;
     const { dir: appDir } = await downloadTemplate(
-      `${githubRepoUrlBase}/${templateName}`,
+      `${githubRepoUrlBase}/${templateDirName}`,
       {
         dir: projectName,
         install: doInstall,
