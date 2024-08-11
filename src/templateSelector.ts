@@ -1,19 +1,15 @@
-type TemplateLangType = "js" | "ts";
+type SelectionType = {
+  label: string;
+  value: string;
+  subSelection?: TemplateConfig;
+};
 
-type TemplateKindType = "playground" | "simple";
-
-type TemplatesType = `${TemplateKindType}-${TemplateLangType}` | "library";
-
-interface ITemplateConfig {
+type TemplateConfig = {
   message: string;
-  selection: Array<{
-    label: string;
-    value: string;
-    subSelection?: ITemplateConfig;
-  }>;
-}
+  selection: Array<SelectionType>;
+};
 
-const templates: ITemplateConfig = {
+const templates: TemplateConfig = {
   message: "Select Template Type",
   selection: [
     {
@@ -45,12 +41,16 @@ const templates: ITemplateConfig = {
   ],
 };
 
+type SelectionTypeWithoutSub = Omit<SelectionType, "subSelection">;
+
+type SelectorFnType = (arg: {
+  message: string;
+  selection: Array<SelectionTypeWithoutSub>;
+}) => Promise<{ index: number }>;
+
 const constructTemplateNameAsync = (
-  templates: ITemplateConfig,
-  selector: (arg: {
-    message: string;
-    selection: Array<{ label: string; value: string }>;
-  }) => Promise<{ index: number }>,
+  templates: TemplateConfig,
+  selector: SelectorFnType,
 ): Promise<string> => {
   throw new Error("Not Implemeted Error");
 };
