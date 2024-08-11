@@ -42,15 +42,24 @@ const templates: TemplateConfig = {
 };
 
 type SelectionTypeWithoutSub = Omit<SelectionType, "subSelection">;
-
 type SelectorFnType = (arg: {
   message: string;
   selection: Array<SelectionTypeWithoutSub>;
-}) => Promise<{ index: number }>;
+}) => SelectorFnReturnType | Promise<SelectorFnReturnType>;
+type SelectorFnReturnType = { index: number };
 
-const constructTemplateNameAsync = (
+const constructTemplateNameAsync = async (
   templates: TemplateConfig,
   selector: SelectorFnType,
 ): Promise<string> => {
-  throw new Error("Not Implemeted Error");
+  const { index } = await selector(templates);
+  const { value, subSelection } = templates.selection[index];
+
+  if (!subSelection) {
+    return value;
+  }
+
+  const subResult = await constructTemplateNameAsync(subSelection, selector);
+
+  return `${value}-${subResult}`;
 };
