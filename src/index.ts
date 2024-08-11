@@ -5,7 +5,8 @@ import { consola } from "consola";
 import { colorize } from "consola/utils";
 import { downloadTemplate } from "giget";
 import { readPackageJSON, writePackageJSON } from "pkg-types";
-import { constructTemplateNameAsync, templates } from "./templateSelector";
+import { templates } from "./projectTemplates";
+import { constructTemplateNameAsync } from "./templateSelector";
 
 export const runMain = () => _runMain(mainCommand);
 
