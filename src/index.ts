@@ -38,8 +38,9 @@ const mainCommand = defineCommand({
     install: {
       type: "boolean",
       alias: ["i"],
-      description: "install dependencies after copy template.",
+      description: "install dependencies after copying template.",
       required: false,
+      valueHint: "true or false",
     },
   },
   run: async ({ args }) => {
@@ -79,7 +80,6 @@ const mainCommand = defineCommand({
     });
 
     const { projectName, templateDirName, doInstall } = settings;
-
     const githubRepoUrlBase = "gh:drumath2237/create-babylon-app/templates";
     const { dir: appDir } = await downloadTemplate(
       `${githubRepoUrlBase}/${templateDirName}`,
