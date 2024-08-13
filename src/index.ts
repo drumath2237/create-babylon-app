@@ -20,14 +20,42 @@ const mainCommand = defineCommand({
         "A CLI for scaffolding Babylon.js web application project from templates!",
     };
   },
-  run: async () => {
-    const projectName = await consola.prompt("Project Name?", {
+  args: {
+    name: {
+      type: "string",
+      alias: ["n"],
+      description: "project name.",
+      valueHint: "project name",
+      required: false,
+    },
+    template: {
+      type: "string",
+      alias: ["t"],
+      description: "project template name. e.g.) simple-ts, library.",
+      valueHint: "template name",
+      required: false,
+    },
+    install: {
+      type: "boolean",
+      alias: ["i"],
+      description: "install dependencies after copy template.",
+      required: false,
+    },
+  },
+  run: async ({ args }) => {
+    const settings = {
+      projectName: args.name,
+      templateDirName: args.template,
+      doInstall: args.install,
+    };
+
+    settings.projectName ??= await consola.prompt("Project Name?", {
       type: "text",
       default: "babylon-app",
       placeholder: "babylon-app",
     });
 
-    const templateDirName = await constructTemplateNameAsync(
+    settings.templateDirName ??= await constructTemplateNameAsync(
       templates,
       async ({ message, selections }) => {
         const val = await consola.prompt(message, {
@@ -45,10 +73,12 @@ const mainCommand = defineCommand({
       },
     );
 
-    const doInstall = await consola.prompt("Install Dependencies?", {
+    settings.doInstall ??= await consola.prompt("Install Dependencies?", {
       type: "confirm",
       initial: false,
     });
+
+    const { projectName, templateDirName, doInstall } = settings;
 
     const githubRepoUrlBase = "gh:drumath2237/create-babylon-app/templates";
     const { dir: appDir } = await downloadTemplate(
