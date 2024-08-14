@@ -31,7 +31,7 @@ const mainCommand = defineCommand({
     template: {
       type: "string",
       alias: ["t"],
-      description: "project template name. e.g.) simple-ts, library.",
+      description: "project template name (e.g. simple-ts, library)",
       valueHint: "template name",
       required: false,
     },

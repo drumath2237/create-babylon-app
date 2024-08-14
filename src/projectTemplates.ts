@@ -1,6 +1,9 @@
 import { colorize } from "consola/utils";
 import type { TemplateConfig } from "./templateSelector";
 
+/**
+ * define template structure recursively
+ */
 export const templates: TemplateConfig = {
   message: "Template Type?",
   selections: [
