@@ -14,6 +14,12 @@ export type SelectorFnType = (arg: {
   selections: Array<SelectionType>;
 }) => SelectionType | Promise<SelectionType>;
 
+/**
+ * create template name from template confg
+ * @param templates list of templates configs
+ * @param selector a function that describes how to choose a selection from selections
+ * @returns template name
+ */
 export const constructTemplateNameAsync = async (
   templates: TemplateConfig,
   selector: SelectorFnType,
