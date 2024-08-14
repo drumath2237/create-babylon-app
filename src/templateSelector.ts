@@ -9,10 +9,9 @@ export type TemplateConfig = {
   selections: Array<SelectionType>;
 };
 
-export type SelectorFnType = (arg: {
-  message: string;
-  selections: Array<SelectionType>;
-}) => SelectionType | Promise<SelectionType>;
+export type SelectorFnType = (
+  arg: TemplateConfig,
+) => SelectionType | Promise<SelectionType>;
 
 /**
  * create template name from template confg
