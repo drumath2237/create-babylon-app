@@ -16,7 +16,21 @@
 
 A CLI for scaffolding Babylon.js Web App 🛠
 
-## (Tested) Environment
+create-babylon-app provides some [Vite](https://vitejs.dev/) based Node.js project.
+For example, template of `simple-ts` has file structure like below.
+
+```txt
+/
+├─ dist/
+├─ src/
+│    ├─ main.ts
+│    └─ style.css
+├─ index.html
+├─ package.json
+└─ tsconfig.json
+```
+
+## Recommended Environment
 
 - Node.js 18/20
 - npm 10.x
