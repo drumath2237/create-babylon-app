@@ -16,6 +16,12 @@
 
 A CLI for scaffolding Babylon.js Web App 🛠
 
+<p align="center">
+
+![demo](./docs/demo.gif)![scene](./docs/scene.gif)
+
+<p/>
+
 create-babylon-app provides some [Vite](https://vitejs.dev/) based Node.js project.
 For example, template of `simple-ts` has file structure like below.
 
