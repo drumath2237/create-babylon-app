@@ -18,7 +18,7 @@ A CLI for scaffolding Babylon.js Web App 🛠
 
 <p align="center">
 
-![demo](./docs/demo.gif)![scene](./docs/scene.gif)
+<img src="./docs/demo.gif" width="75%" align="center"/><img src="./docs/scene.gif" width="75%" align="center"/>
 
 <p/>
 
