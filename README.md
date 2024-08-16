@@ -12,16 +12,16 @@
 
 </h3>
 
+<div align="center">
+<img src="./docs/demo.gif" width="70%" align="center"/>
+<img src="./docs/scene.gif" width="70%" align="center"/>
+<div/>
+  
+<div align="left">
+
 ## About
 
-A CLI for scaffolding Babylon.js Web App 🛠
-
-<p align="center">
-
-![demo](./docs/demo.gif)![scene](./docs/scene.gif)
-
-<p/>
-
+A CLI for scaffolding Babylon.js Web App 🛠  
 create-babylon-app provides some [Vite](https://vitejs.dev/) based Node.js project.
 For example, template of `simple-ts` has file structure like below.
 
@@ -100,7 +100,9 @@ pnpm start
 - (in local) `pnpm version:set`
 - (Pull Req) Create PR and merge it
   - then, automatically published to npm
-
+ 
 ## Author
 
 [@drumath2237](https://twitter.com/ninisan_drumath)
+
+<div/>
